@@ -1,25 +1,68 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SchoolWebsite.Models;
 
-namespace SchoolWebsite.Controllers
+namespace GEMS_School.Controllers
 {
     public class HomeController : Controller
     {
+        private void SetFooterData()
+        {
+            ViewBag.FooterAbout = "GEMS School is a premier educational institution dedicated to providing quality education and holistic development to students.";
+        }
+
         public IActionResult Index()
         {
+            SetFooterData();
+            ViewBag.Title = "Home";
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
+            SetFooterData();
+            ViewBag.Title = "About Us";
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Admission()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            SetFooterData();
+            ViewBag.Title = "Admissions";
+            return View();
+        }
+
+        public IActionResult Academics()
+        {
+            SetFooterData();
+            ViewBag.Title = "Academics";
+            return View();
+        }
+
+        public IActionResult Activities()
+        {
+            SetFooterData();
+            ViewBag.Title = "Activities";
+            return View();
+        }
+
+        public IActionResult Publication()
+        {
+            SetFooterData();
+            ViewBag.Title = "Publication";
+            return View();
+        }
+
+        public IActionResult Careers()
+        {
+            SetFooterData();
+            ViewBag.Title = "Careers";
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            SetFooterData();
+            ViewBag.Title = "Contact";
+            return View();
         }
     }
 }
