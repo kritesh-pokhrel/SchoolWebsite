@@ -132,6 +132,40 @@ body {
             background: var(--bg-light);
         }
 
+/* =========================
+   NAVBAR ACCOUNT BUTTON
+========================= */
+
+.navbar .btn-primary {
+    background: #003366;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .navbar .btn-primary:hover {
+        background: #0288d1;
+        color: #fff;
+    }
+
+.dropdown-menu {
+    border-radius: 12px;
+    padding: 10px 0;
+    min-width: 200px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+    .dropdown-item:hover {
+        background: #f5f7fa;
+        padding-left: 22px;
+    }
+
 .mobile-menu-toggle {
     display: none;
     background: none;
@@ -1748,64 +1782,553 @@ body {
     gap: var(--spacing-md);
 }
 
-@media (min-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr 1fr;
+/* ========================= */
+/* FULL ACADEMICS PAGE CSS */
+/* ========================= */
+
+.academics-page {
+    padding: 70px 0;
+    background: #fff;
+}
+
+.academics-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 40px;
+}
+
+/* BANNER */
+.academic-banner img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+/* IPC */
+.ipc-section {
+    margin-top: 40px;
+    background: #f7f7f7;
+    padding: 35px;
+}
+
+.ipc-content {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.small-title {
+    color: #00a7e1;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.ipc-text h2 {
+    font-size: 42px;
+    color: #003366;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.ipc-text p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.ipc-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* MILESTONES */
+.milestone-tabs {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.milestone {
+    background: #0288d1;
+    color: #fff;
+    text-align: center;
+    padding: 18px;
+}
+
+    .milestone.active {
+        background: #003366;
     }
 
-    .why-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .milestone h4 {
+        margin-bottom: 5px;
+        font-size: 18px;
     }
 
-    .thunder-grid {
-        grid-template-columns: 1fr 1fr;
+    .milestone p {
+        font-size: 14px;
     }
 
-    .news-grid {
-        grid-template-columns: repeat(3, 1fr);
+/* IPC DETAILS */
+.ipc-details {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.details-image img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.details-text p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+/* SECTION */
+.section-header {
+    margin-bottom: 40px;
+}
+
+    .section-header span {
+        color: #00a7e1;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 700;
     }
 
-    .app-grid {
-        grid-template-columns: 1fr 1fr;
+    .section-header h2 {
+        color: #003366;
+        font-size: 38px;
+        margin-top: 10px;
     }
 
-    .achiever-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* SUBJECTS */
+.subjects-section {
+    margin-top: 80px;
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 30px;
+}
+
+.subject-card {
+    text-align: center;
+}
+
+.subject-icon {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: #0288d1;
+    margin: auto auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .subject-icon i {
+        font-size: 34px;
+        color: white;
     }
 
-    .form-row {
-        grid-template-columns: 1fr 1fr;
+.subject-card h4 {
+    font-size: 16px;
+    color: #333;
+}
+
+/* PROCESS */
+.process-section {
+    margin-top: 90px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.process-card {
+    background: #f7f7f7;
+    padding: 30px;
+    border-top: 4px solid #00a7e1;
+}
+
+    .process-card h4 {
+        color: #003366;
+        margin-bottom: 15px;
+    }
+
+    .process-card p {
+        color: #666;
+        line-height: 1.8;
+    }
+
+/* NEWSLETTER */
+.newsletter-section {
+    margin-top: 90px;
+}
+
+.newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 35px;
+}
+
+.newsletter-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+.newsletter-info {
+    margin-top: 15px;
+}
+
+    .newsletter-info h4 {
+        font-size: 14px;
+        color: #666;
+    }
+
+/* SIDEBAR */
+.sidebar-box {
+    border: 1px solid #eee;
+    padding: 30px;
+    position: sticky;
+    top: 100px;
+}
+
+    .sidebar-box h3 {
+        color: #003366;
+        margin-bottom: 25px;
+        font-size: 28px;
+    }
+
+    .sidebar-box ul {
+        list-style: none;
+    }
+
+    .sidebar-box li {
+        border-bottom: 1px solid #eee;
+    }
+
+        .sidebar-box li a {
+            display: block;
+            padding: 14px 0;
+            text-decoration: none;
+            color: #555;
+            transition: 0.3s;
+        }
+
+            .sidebar-box li a:hover {
+                color: #00a7e1;
+                padding-left: 10px;
+            }
+
+/* RESPONSIVE */
+@media(max-width: 992px) {
+
+    .academics-layout,
+    .ipc-content,
+    .ipc-details,
+    .subjects-grid,
+    .process-grid,
+    .newsletter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .milestone-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .ipc-text h2,
+    .section-header h2 {
+        font-size: 30px;
+    }
+
+    .subject-icon {
+        width: 80px;
+        height: 80px;
     }
 }
 
-@media (min-width: 992px) {
-    .why-grid {
-        grid-template-columns: repeat(4, 1fr);
+/* ===================================
+   ADMISSION PAGE
+=================================== */
+
+.admission-page {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.admission-layout {
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 50px;
+}
+
+/* LEFT */
+.admission-heading {
+    margin-bottom: 35px;
+}
+
+    .admission-heading h2 {
+        font-size: 48px;
+        color: #222;
+        font-weight: 300;
+        line-height: 1.2;
     }
 
-    .achiever-grid {
-        grid-template-columns: repeat(4, 1fr);
+        .admission-heading h2 strong {
+            font-weight: 700;
+        }
+
+.heading-border {
+    width: 65px;
+    height: 3px;
+    background: #00bcd4;
+    margin-top: 18px;
+}
+
+.admission-content p {
+    color: #666;
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+/* REQUIREMENT BOX */
+.requirement-wrapper {
+    margin-top: 50px;
+}
+
+.requirement-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+    .requirement-tabs button {
+        border: none;
+        background: #0288d1;
+        color: #fff;
+        padding: 13px 22px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .requirement-tabs button.active {
+            background: #00bcd4;
+        }
+
+.requirement-content {
+    background: #f7f7f7;
+    padding: 35px;
+    border: 1px solid #eee;
+}
+
+    .requirement-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .requirement-content li {
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 20px;
+        color: #666;
+        line-height: 1.8;
+    }
+
+        .requirement-content li::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #00bcd4;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 11px;
+        }
+
+.admission-btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: #0288d1;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .admission-btn:hover {
+        background: #003366;
+    }
+
+/* NOTE */
+.admission-note {
+    margin-top: 60px;
+    background: #f7f7f7;
+    border: 1px solid #eee;
+    padding: 25px 30px;
+}
+
+    .admission-note p {
+        margin: 0;
+        color: #888;
+    }
+
+/* SIDEBAR */
+.sidebar-menu-box {
+    border: 1px solid #eee;
+    background: #f7f7f7;
+    position: sticky;
+    top: 100px;
+}
+
+    .sidebar-menu-box h3 {
+        padding: 28px 30px;
+        margin: 0;
+        font-size: 36px;
+        font-weight: 700;
+        color: #111;
+    }
+
+    .sidebar-menu-box ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidebar-menu-box li {
+        border-top: 1px solid #e5e5e5;
+    }
+
+        .sidebar-menu-box li a {
+            display: block;
+            padding: 18px 30px;
+            text-decoration: none;
+            color: #666;
+            transition: 0.3s;
+        }
+
+            .sidebar-menu-box li a:hover,
+            .sidebar-menu-box li a.active {
+                background: #fff;
+                color: #00bcd4;
+                padding-left: 38px;
+            }
+
+/* RESPONSIVE */
+@media(max-width: 992px) {
+
+    .admission-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-menu-box {
+        position: relative;
+        top: 0;
+    }
+
+    .admission-heading h2 {
+        font-size: 38px;
     }
 }
 
-@media (max-width: 767px) {
-    .hero-content h1 {
-        font-size: var(--font-size-xxl);
+@media(max-width: 768px) {
+
+    .admission-heading h2 {
+        font-size: 30px;
     }
 
-    .hero-content p {
-        font-size: var(--font-size-base);
-    }
-
-    .hero-buttons {
+    .requirement-tabs {
         flex-direction: column;
     }
 
-    .about-buttons {
-        flex-direction: column;
-    }
+        .requirement-tabs button {
+            width: 100%;
+        }
 
-    .store-buttons {
-        flex-direction: column;
+    .sidebar-menu-box h3 {
+        font-size: 28px;
     }
 }
+
+
+    @media (min-width: 768px) {
+        .about-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .why-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .thunder-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .news-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .app-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .achiever-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .form-row {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .why-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .achiever-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .hero-content h1 {
+            font-size: var(--font-size-xxl);
+        }
+
+        .hero-content p {
+            font-size: var(--font-size-base);
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+        }
+
+        .about-buttons {
+            flex-direction: column;
+        }
+
+        .store-buttons {
+            flex-direction: column;
+        }
+    }

@@ -153,6 +153,45 @@
                         </li>
 
                     </ul>
+                    <!-- Auth Dropdown -->
+                    <li class="nav-item dropdown ms-lg-3">
+
+                        <a class="nav-link dropdown-toggle btn btn-primary text-white px-3"
+                           href="#"
+                           id="authDropdown"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+
+                            <i class="fas fa-user me-2"></i>
+                            Account
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                            <li>
+                                <a class="dropdown-item py-2"
+                                   asp-controller="Account"
+                                   asp-action="Login">
+
+                                    <i class="fas fa-sign-in-alt me-2 text-primary"></i>
+                                    Login
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item py-2"
+                                   asp-controller="Account"
+                                   asp-action="Register">
+
+                                    <i class="fas fa-user-plus me-2 text-success"></i>
+                                    Register
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
 
                 </div>
 
