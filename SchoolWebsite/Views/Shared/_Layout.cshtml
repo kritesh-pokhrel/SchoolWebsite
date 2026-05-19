@@ -1,30 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string? currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    string? currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+
+    string IsActive(string controller, string action)
+    {
+        return (currentController == controller && currentAction == action) ? "active" : "";
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>@ViewBag.Title - GEMS SCHOOL</title>
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
-    <!-- Font Awesome -->
+    <link href="~/css/base.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/pages.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- Site CSS -->
-    <link rel="stylesheet"
-          href="~/css/site.css"
-          asp-append-version="true" />
 </head>
 
 <body>
 
     <!-- Header -->
     <header class="site-header">
-
-        <!-- Top Bar -->
         <div class="top-bar bg-dark text-white py-2">
             <div class="container">
 
@@ -61,151 +63,103 @@
             </div>
         </div>
 
-        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container">
-
-                <!-- Logo -->
-                <a class="navbar-brand fw-bold"
-                   asp-controller="Home"
-                   asp-action="Index">
-
-                    <img src="https://via.placeholder.com/180x55/003366/ffffff?text=GEMS+SCHOOL"
-                         alt="GEMS SCHOOL"
-                         class="img-fluid" />
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    GEMS SCHOOL
                 </a>
-
-                <!-- Mobile Toggle -->
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbar">
-
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <!-- Menu -->
                 <div class="collapse navbar-collapse" id="mainNavbar">
+
                     <ul class="navbar-nav ms-auto align-items-lg-center">
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Index">
-                                HOME
-                            </a>
+                            <a class="nav-link @IsActive("Home", "Index")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="About">
-                                ABOUT US
-                            </a>
+                            <a class="nav-link @IsActive("Home", "About")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">ABOUT US</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Academics">
-                                ACADEMICS
-                            </a>
+                            <a class="nav-link @IsActive("Home", "Academics")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Academics">ACADEMICS</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Admission">
-                                ADMISSIONS
-                            </a>
+                            <a class="nav-link @IsActive("Home", "Admission")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Admission">FOUNDER</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Activities">
-                                SPORTS & ACTIVITIES
-                            </a>
+                            <a class="nav-link @IsActive("Home", "Activities")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Activities">EVENTS</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Publication">
-                                PUBLICATION
-                            </a>
+                            <a class="nav-link @IsActive("Home", "Contact")"></a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">CONTACT</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Careers">
-                                CAREERS
-                            </a>
-                        </li>
+                        <li class="nav-item dropdown ms-lg-3">
 
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Contact">
-                                CONTACT
+                            <a class="nav-link dropdown-toggle btn btn-primary text-white px-3"
+                               href="#"
+                               id="loginDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+
+                                <i class="fas fa-user me-2"></i>
+                                Login
                             </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                                <li>
+                                    <a class="dropdown-item py-2"
+                                       asp-controller="Account"
+                                       asp-action="AdminLogin">
+                                        <i class="fas fa-user-shield me-2 text-danger"></i>
+                                        Admin Login
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item py-2"
+                                       asp-controller="Account"
+                                       asp-action="TeacherLogin">
+                                        <i class="fas fa-chalkboard-teacher me-2 text-primary"></i>
+                                        Teacher Login
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item py-2"
+                                       asp-controller="Account"
+                                       asp-action="StudentLogin">
+                                        <i class="fas fa-user-graduate me-2 text-success"></i>
+                                        Student / Parent Login
+                                    </a>
+                                </li>
+
+                            </ul>
                         </li>
 
                     </ul>
-                    <!-- Auth Dropdown -->
-                    <li class="nav-item dropdown ms-lg-3">
-
-                        <a class="nav-link dropdown-toggle btn btn-primary text-white px-3"
-                           href="#"
-                           id="authDropdown"
-                           role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
-
-                            <i class="fas fa-user me-2"></i>
-                            Account
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-
-                            <li>
-                                <a class="dropdown-item py-2"
-                                   asp-controller="Account"
-                                   asp-action="Login">
-
-                                    <i class="fas fa-sign-in-alt me-2 text-primary"></i>
-                                    Login
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item py-2"
-                                   asp-controller="Account"
-                                   asp-action="Register">
-
-                                    <i class="fas fa-user-plus me-2 text-success"></i>
-                                    Register
-                                </a>
-                            </li>
-
-                        </ul>
-
-                    </li>
 
                 </div>
-
             </div>
         </nav>
-
     </header>
-
-    <!-- Main Body -->
     <main>
         @RenderBody()
     </main>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-3 mt-5">
 
         <div class="container">

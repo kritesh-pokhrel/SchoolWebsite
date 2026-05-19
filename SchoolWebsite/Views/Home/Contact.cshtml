@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<section class="contact-page">
+    <div class="container">
+        <div class="page-header">
+            <div class="header-eyebrow"></div>
+            <h1>Get in <em>Touch</em></h1>
+            <p class="sub-text">
+                We'd love to hear from you. Whether it's a question, feedback, or just a hello — reach out anytime.
+            </p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info-box">
+                <div class="info-card-title">We're here for you</div>
+                <div class="info-card-sub">
+                    Our team responds within one business day. Come visit us during school hours.
+                </div>
+
+                <div class="info-items">
+                    <div class="info-item">
+                        <div class="ii-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="ii-text">
+                            <h4>Address</h4>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="ii-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="ii-text">
+                            <h4>Phone</h4>
+                            <p>+977 98XXXXXXXX</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="ii-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="ii-text">
+                            <h4>Email</h4>
+                            <p>info@school.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="ii-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="ii-text">
+                            <h4>Office Hours</h4>
+                            <p>Sun – Fri: 9:00 AM – 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-row">
+                    <a href="#" class="soc-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="soc-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="soc-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="soc-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form-box">
+                <div class="form-card-title">Send a Message</div>
+                <div class="form-card-sub">Fill in the form below and we'll get back to you shortly.</div>
+
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">Full Name</label>
+                            <input type="text" id="fname" placeholder="e.g. Ram Sharma" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="femail">Email Address</label>
+                            <input type="email" id="femail" placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fphone">Phone (optional)</label>
+                        <input type="tel" id="fphone" placeholder="+977 98XXXXXXXX" autocomplete="tel">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fsubject">Subject</label>
+                        <select id="fsubject">
+                            <option value="" disabled selected>Select a topic…</option>
+                            <option>General Enquiry</option>
+                            <option>Admissions</option>
+                            <option>Fee &amp; Payments</option>
+                            <option>Academic Support</option>
+                            <option>Events &amp; Activities</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fmsg">Message</label>
+                        <textarea id="fmsg"
+                                  rows="5"
+                                  placeholder="Tell us how we can help you…"
+                                  maxlength="500"
+                                  oninput="document.getElementById('charCount').textContent = this.value.length + '/500'"></textarea>
+                        <div class="char-count"><span id="charCount">0/500</span></div>
+                    </div>
+
+                    <div class="submit-row">
+                        <button type="button" class="btn-submit" onclick="sendForm()">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <p class="privacy-note">
+                            <i class="fas fa-shield-alt"></i>
+                            Your information is private and never shared.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    Message sent! We'll be in touch soon.
+</div>
+
+
+@section Scripts {
+    <script>
+        function sendForm() {
+            var name = document.getElementById('fname').value.trim();
+            var email = document.getElementById('femail').value.trim();
+            document.getElementById('fname').style.borderColor = '';
+            document.getElementById('femail').style.borderColor = '';
+            if (!name || !email) {
+                if (!name) document.getElementById('fname').style.borderColor = '#e24b4a';
+                if (!email) document.getElementById('femail').style.borderColor = '#e24b4a';
+                return;
+            }
+            var toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(function () { toast.classList.remove('show'); }, 3500);
+            document.getElementById('fname').value = '';
+            document.getElementById('femail').value = '';
+            document.getElementById('fphone').value = '';
+            document.getElementById('fsubject').selectedIndex = 0;
+            document.getElementById('fmsg').value = '';
+            document.getElementById('charCount').textContent = '0/500';
+        }
+    </script>
+}

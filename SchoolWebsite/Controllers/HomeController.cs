@@ -44,20 +44,6 @@ namespace GEMS_School.Controllers
             return View();
         }
 
-        public IActionResult Publication()
-        {
-            SetFooterData();
-            ViewBag.Title = "Publication";
-            return View();
-        }
-
-        public IActionResult Careers()
-        {
-            SetFooterData();
-            ViewBag.Title = "Careers";
-            return View();
-        }
-
         public IActionResult Contact()
         {
             SetFooterData();
