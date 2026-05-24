@@ -42,5 +42,24 @@ namespace SchoolWebsite.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ParentLogin()
+        {
+            ViewBag.Title = "ParentsLogin";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ParentLogin(string username, string password, bool rememberMe)
+        {
+            // TODO: Replace with real DB validation
+            if (username == "parent" && password == "12345")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.Error = "Invalid username or password";
+            return View();
+        }
     }
 }
