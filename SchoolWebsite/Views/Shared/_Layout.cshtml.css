@@ -1,6 +1,58 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.layout-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "before_header"
+    "header"
+    "before_main"
+    "main"
+    "after_main"
+    "before_footer"
+    "footer"
+    "after_footer";
+  min-height: 100vh;
+}
+
+.before_header {
+  grid-area: before_header;
+}
+
+header {
+  grid-area: header;
+}
+
+.before_main {
+  grid-area: before_main;
+}
+
+main {
+  grid-area: main;
+}
+
+.after_main {
+  grid-area: after_main;
+}
+
+.before_footer {
+  grid-area: before_footer;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.after_footer {
+  grid-area: after_footer;
+}
+
+.aside_first,
+.aside_second {
+  display: none;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;

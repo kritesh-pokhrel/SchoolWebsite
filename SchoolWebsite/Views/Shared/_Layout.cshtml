@@ -1,11 +1,5 @@
 ﻿@{
-    string? currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
-    string? currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
-
-    string IsActive(string controller, string action)
-    {
-        return (currentController == controller && currentAction == action) ? "active" : "";
-    }
+    // Layout does not need IsActive here because the header partial handles active nav links.
 }
 
 <!DOCTYPE html>
@@ -13,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script type="importmap"></script>
     <title>@ViewBag.Title - GEMS SCHOOL</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/base.css" rel="stylesheet" asp-append-version="true" />
@@ -24,301 +18,52 @@
 </head>
 
 <body>
+    <div class="layout-wrapper">
+        <div class="before_header">@RenderSection("before_header", false)</div>
+
+        <header>
+            @if (IsSectionDefined("header"))
+            {
+                @RenderSection("header")
+            }
+            else
+            {
+                @await Html.PartialAsync("~/Views/Shared/Components/_Header.cshtml")
+            }
+        </header>
+
+        <div class="before_main">@RenderSection("before_main", false)</div>
+
+        <main>
+            @if (IsSectionDefined("main"))
+            {
+                @RenderSection("main")
+            }
+            else
+            {
+                @RenderBody()
+            }
+        </main>
+
+        <div class="after_main">@RenderSection("after_main", false)</div>
+
+        <div class="before_footer">@RenderSection("before_footer", false)</div>
+
+        @if (IsSectionDefined("footer"))
+        {
+            @RenderSection("footer")
+        }
+        else
+        {
+            @await Html.PartialAsync("~/Views/Shared/Components/_Footer.cshtml")
+        }
+
+        <div class="after_footer">@RenderSection("after_footer", false)</div>
+    </div>
 
-    <!-- Header -->
-    <header class="site-header">
-        <div class="top-bar bg-dark text-white py-2">
-            <div class="container">
-
-                <div class="d-flex justify-content-between align-items-center flex-wrap">
-
-                    <div class="contact-info d-flex gap-3">
-                        <span>
-                            <i class="fas fa-envelope me-1"></i>
-                            info@gemsschool.edu
-                        </span>
-
-                        <span>
-                            <i class="fas fa-phone me-1"></i>
-                            +977-1-1234567
-                        </span>
-                    </div>
-
-                    <div class="social-icons d-flex gap-3">
-                        <a href="#" class="text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-
-                        <a href="#" class="text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-
-                        <a href="#" class="text-white">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
-                    GEMS SCHOOL
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
-
-                    <ul class="navbar-nav ms-auto align-items-lg-center">
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "Index")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "About")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="About">ABOUT US</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "Academics")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="Academics">ACADEMICS</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "Admission")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="Admission">FOUNDER</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "Activities")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="Activities">EVENTS</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link @IsActive("Home", "Contact")"></a>
-                            <a class="nav-link" asp-controller="Home" asp-action="Contact">CONTACT</a>
-                        </li>
-
-                        <li class="nav-item dropdown ms-lg-3">
-
-                            <a class="nav-link dropdown-toggle btn btn-primary text-white px-3"
-                               href="#"
-                               id="loginDropdown"
-                               role="button"
-                               data-bs-toggle="dropdown"
-                               aria-expanded="false">
-
-                                <i class="fas fa-user me-2"></i>
-                                Login
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-
-                                <li>
-                                    <a class="dropdown-item py-2"
-                                       asp-controller="Account"
-                                       asp-action="AdminLogin">
-                                        <i class="fas fa-user-shield me-2 text-danger"></i>
-                                        Admin Login
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item py-2"
-                                       asp-controller="Account"
-                                       asp-action="TeacherLogin">
-                                        <i class="fas fa-chalkboard-teacher me-2 text-primary"></i>
-                                        Teacher Login
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item py-2"
-                                       asp-controller="Account"
-                                       asp-action="ParentsLogin">
-                                        <i class="fas fa-user-graduate me-2 text-success"></i>
-                                        Student / Parent Login
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-        @RenderBody()
-    </main>
-
-    <footer class="bg-dark text-white pt-5 pb-3 mt-5">
-
-        <div class="container">
-
-            <div class="row gy-4">
-
-                <!-- About -->
-                <div class="col-lg-4 col-md-6">
-
-                    <h5 class="mb-3">About GEMS</h5>
-
-                    <p class="text-light">
-                        @ViewBag.FooterAbout
-                    </p>
-
-                </div>
-
-                <!-- Quick Links -->
-                <div class="col-lg-2 col-md-6">
-
-                    <h5 class="mb-3">Quick Links</h5>
-
-                    <ul class="list-unstyled">
-
-                        <li class="mb-2">
-                            <a class="text-decoration-none text-light"
-                               href="@Url.Action("Index", "Home")">
-                                Home
-                            </a>
-                        </li>
-
-                        <li class="mb-2">
-                            <a class="text-decoration-none text-light"
-                               href="@Url.Action("About", "Home")">
-                                About Us
-                            </a>
-                        </li>
-
-                        <li class="mb-2">
-                            <a class="text-decoration-none text-light"
-                               href="@Url.Action("Admission", "Home")">
-                                Admission
-                            </a>
-                        </li>
-
-                        <li class="mb-2">
-                            <a class="text-decoration-none text-light"
-                               href="@Url.Action("Academics", "Home")">
-                                Academics
-                            </a>
-                        </li>
-
-                        <li class="mb-2">
-                            <a class="text-decoration-none text-light"
-                               href="@Url.Action("Contact", "Home")">
-                                Contact
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-                <!-- Gallery -->
-                <div class="col-lg-3 col-md-6">
-
-                    <h5 class="mb-3">Photo Gallery</h5>
-
-                    <div class="row g-2">
-
-                        <div class="col-6">
-                            <img src="https://via.placeholder.com/150x100/003366/ffffff?text=Gallery+1"
-                                 class="img-fluid rounded"
-                                 alt="Gallery 1" />
-                        </div>
-
-                        <div class="col-6">
-                            <img src="https://via.placeholder.com/150x100/ff6600/ffffff?text=Gallery+2"
-                                 class="img-fluid rounded"
-                                 alt="Gallery 2" />
-                        </div>
-
-                        <div class="col-6">
-                            <img src="https://via.placeholder.com/150x100/003366/ffffff?text=Gallery+3"
-                                 class="img-fluid rounded"
-                                 alt="Gallery 3" />
-                        </div>
-
-                        <div class="col-6">
-                            <img src="https://via.placeholder.com/150x100/ff6600/ffffff?text=Gallery+4"
-                                 class="img-fluid rounded"
-                                 alt="Gallery 4" />
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- Newsletter -->
-                <div class="col-lg-3 col-md-6">
-
-                    <h5 class="mb-3">Newsletter</h5>
-
-                    <form>
-
-                        <div class="mb-3">
-                            <input type="email"
-                                   class="form-control"
-                                   placeholder="Enter your email" />
-                        </div>
-
-                        <button type="submit"
-                                class="btn btn-warning w-100">
-                            Subscribe Now
-                        </button>
-
-                    </form>
-
-                    <div class="d-flex gap-3 mt-4">
-
-                        <a href="#" class="text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-
-                        <a href="#" class="text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-
-                        <a href="#" class="text-white">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Footer Bottom -->
-            <hr class="border-light my-4" />
-
-            <div class="text-center">
-                <p class="mb-0">
-                    &copy; @DateTime.Now.Year GEMS SCHOOL. All Rights Reserved.
-                </p>
-            </div>
-
-        </div>
-
-    </footer>
-
-    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
-
 </body>
 </html>
