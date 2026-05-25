@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -20,8 +20,15 @@
                 <div class="main-content">
                     <h2>Welcome to Our School</h2>
                     <div class="welcome-text">
-                        <p>GEMS SCHOOL is a premier educational institution dedicated to providing excellence in education. We believe in nurturing young minds and preparing them for a bright future.</p>
-                        <p>Our commitment to academic excellence, combined with a focus on holistic development, ensures that every student reaches their full potential.</p>
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.PageContent))
+                        {
+                            @Html.Raw(ViewBag.PageContent)
+                        }
+                        else
+                        {
+                            <p>GEMS SCHOOL is a premier educational institution dedicated to providing excellence in education. We believe in nurturing young minds and preparing them for a bright future.</p>
+                            <p>Our commitment to academic excellence, combined with a focus on holistic development, ensures that every student reaches their full potential.</p>
+                        }
                     </div>
                     <div class="welcome-images">
                         <img src="https://via.placeholder.com/600x300/003366/ffffff?text=School+Campus" alt="School Campus" />

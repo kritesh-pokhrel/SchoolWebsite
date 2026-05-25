@@ -4,6 +4,13 @@ namespace GEMS_School.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SchoolWebsite.Services.IContentService _contentService;
+
+        public HomeController(SchoolWebsite.Services.IContentService contentService)
+        {
+            _contentService = contentService;
+        }
+
         private void SetFooterData()
         {
             ViewBag.FooterAbout = "GEMS School is a premier educational institution dedicated to providing quality education and holistic development to students.";
@@ -20,6 +27,7 @@ namespace GEMS_School.Controllers
         {
             SetFooterData();
             ViewBag.Title = "About Us";
+            ViewBag.PageContent = _contentService.GetContent("about");
             return View();
         }
 
